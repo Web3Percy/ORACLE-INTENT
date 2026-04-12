@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from 'react';
-import { Search, ShieldAlert, AlertTriangle, ShieldCheck } from 'lucide-react';
+import { Search, AlertTriangle, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function Home() {
   const [url, setUrl] = useState('');
@@ -35,15 +36,28 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-matrix-bg text-matrix-primary flex flex-col items-center justify-center p-8 font-mono">
+    <main className="min-h-screen bg-matrix-bg text-matrix-primary flex flex-col items-center p-8 font-mono">
+      {/* Navbar with Logo */}
+      <nav className="w-full max-w-5xl flex justify-between items-center mb-16">
+        <div className="flex items-center gap-3">
+          <span className="font-bold text-xl tracking-wider text-matrix-primary">ORACLE<span className="text-matrix-secondary">INTENT</span></span>
+        </div>
+      </nav>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="max-w-3xl w-full flex flex-col items-center gap-12"
       >
-        <div className="text-center space-y-6">
-          <ShieldAlert className="w-20 h-20 mx-auto text-matrix-primary opacity-80" />
+        <div className="text-center space-y-6 flex flex-col items-center">
+          <Image
+            src="/logo.jpg"
+            alt="OpenGradient Logo"
+            width={96}
+            height={96}
+            className="w-24 h-24 rounded-full aspect-square object-cover shadow-[0_0_25px_rgba(194,231,244,0.6)] mb-4"
+          />
           <h1 className="text-5xl md:text-7xl font-bold tracking-tighter">
             Audit the Human, <br />
             <span className="text-matrix-secondary">Not the Code.</span>
@@ -82,33 +96,39 @@ export default function Home() {
           >
             <div className="flex flex-col items-center gap-4 pb-8 border-b border-matrix-secondary/20">
               <h2 className="text-2xl font-bold text-matrix-primary/80">Founder Integrity Score</h2>
-              <div className="relative flex items-center justify-center w-32 h-32 rounded-full border-4 border-matrix-secondary/30">
-                <span className="text-4xl font-bold">{results.score}</span>
+              <div
+                className="relative flex items-center justify-center w-32 h-32 rounded-full border-4 shadow-[0_0_20px_rgba(104,176,211,0.4)]"
+                style={{
+                  borderColor: `rgba(104,176,211, ${results.score / 100})`,
+                  backgroundColor: 'rgba(0,48,73,0.5)'
+                }}
+              >
+                <span className="text-4xl font-bold text-matrix-primary drop-shadow-[0_0_8px_rgba(194,231,244,0.8)]">{results.score}</span>
                 <span className="text-sm absolute bottom-4 text-matrix-primary/60">/100</span>
               </div>
             </div>
 
             <div className="space-y-6">
               <h3 className="text-xl font-bold flex items-center gap-2">
-                <AlertTriangle className="w-5 h-5 text-red-400" />
+                <AlertTriangle className="w-5 h-5 text-matrix-primary shadow-matrix-secondary" />
                 Dark Psychology Tactics Detected
               </h3>
 
               {results.highlights.length > 0 ? (
                 <div className="grid gap-4">
                   {results.highlights.map((h, i) => (
-                    <div key={i} className="bg-matrix-bg border border-red-500/20 p-4 rounded-lg flex items-start gap-4">
-                      <div className="w-2 h-2 rounded-full bg-red-400 mt-2 flex-shrink-0" />
+                    <div key={i} className="bg-matrix-bg border border-matrix-secondary/40 p-4 rounded-lg flex items-start gap-4 shadow-[0_0_10px_rgba(104,176,211,0.15)] transition-shadow hover:shadow-[0_0_15px_rgba(104,176,211,0.3)]">
+                      <div className="w-2 h-2 rounded-full bg-matrix-secondary mt-2 flex-shrink-0 shadow-[0_0_5px_#68B0D3]" />
                       <div>
-                        <h4 className="font-bold text-red-300">{h.tactic}</h4>
+                        <h4 className="font-bold text-matrix-primary">{h.tactic}</h4>
                         <p className="text-matrix-primary/70 mt-1">{h.description}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="flex items-center gap-3 text-green-400 bg-green-400/10 p-4 rounded-lg">
-                  <ShieldCheck className="w-6 h-6" />
+                <div className="flex items-center gap-3 text-matrix-primary bg-matrix-secondary/10 p-4 rounded-lg border border-matrix-secondary/30">
+                  <ShieldCheck className="w-6 h-6 text-matrix-secondary" />
                   <p>No manipulation tactics detected. Documentation appears transparent.</p>
                 </div>
               )}

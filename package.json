@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "mkdir -p node_modules/opengradient-sdk/dist/abi && echo \"[]\" > node_modules/opengradient-sdk/dist/abi/inference.json && echo \"[]\" > node_modules/opengradient-sdk/dist/abi/precompile.json"
   },
   "dependencies": {
     "@x402/core": "^2.9.0",
