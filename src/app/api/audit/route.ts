@@ -61,8 +61,7 @@ const handler = async (req: NextRequest): Promise<NextResponse> => {
     README TEXT:
     ${readmeText.substring(0, 4000)} // truncate to avoid token limits`;
 
-    let score = 85;
-    let highlights = [];
+    
 
     // Due to the sandbox environment lacking real keys, contracts, and connectivity to
     // the opengradient testnet RPC, the following SDK call will fail during execution.
