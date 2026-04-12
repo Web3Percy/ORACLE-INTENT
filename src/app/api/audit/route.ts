@@ -4,22 +4,29 @@ export async function POST(req: NextRequest) {
   try {
     const { url } = await req.json();
 
-    // THIS IS THE SECRET: Dynamic loading to bypass Netlify's build-time lock
-    const sdkModule = await import('opengradient-sdk-js');
-    const { OpenGradientSDK, LLMInferenceMode } = sdkModule;
+    // Shielded Dynamic Import
+    let OpenGradientSDK, LLMInferenceMode;
+    try {
+      const sdk = await import('opengradient-sdk-js');
+      OpenGradientSDK = sdk.OpenGradientSDK;
+      LLMInferenceMode = sdk.LLMInferenceMode;
+    } catch (importError) {
+      console.error("SDK Load Error:", importError);
+      return NextResponse.json({ error: "SDK_NOT_INSTALLED", details: importError }, { status: 500 });
+    }
 
     const ogClient = new OpenGradientSDK({
-      privateKey: process.env.OPENGRADIENT_PRIVATE_KEY,
+      privateKey: process.env.OPENGRADIENT_PRIVATE_KEY || "",
     });
 
     const [llmResponse] = await ogClient.llmCompletion(
       "bafybeiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
       LLMInferenceMode.TEE,
-      `Perform forensic audit: ${url}`
+      `Evaluate: ${url}`
     );
 
-    return NextResponse.json({ score: llmResponse.score, verified: true });
+    return NextResponse.json({ score: llmResponse.score });
   } catch (e) {
-    return NextResponse.json({ error: "SDK native resolution failed" }, { status: 500 });
+    return NextResponse.json({ error: "RUNTIME_ERROR" }, { status: 500 });
   }
 }
