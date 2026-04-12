@@ -7,6 +7,6 @@
     "next": "14.2.35",
     "react": "^18",
     "react-dom": "^18",
-    "@opengradient/sdk": "^0.4.2"
+    "@opengradient/sdk": "git+https://github.com/opengradient/opengradient-sdk-js.git"
   }
 }
