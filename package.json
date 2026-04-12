@@ -16,7 +16,7 @@
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.8.0",
     "next": "14.2.35",
-    "opengradient-sdk": "^1.0.2",
+    "@opengradient/sdk": "^0.4.2"
     "react": "^18",
     "react-dom": "^18"
   },
