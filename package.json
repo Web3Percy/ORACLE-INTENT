@@ -1,15 +1,16 @@
 {
-  "name": "tmp-next",
+  "name": "oracle-intent",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build"
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "next": "14.2.35",
     "react": "^18",
     "react-dom": "^18",
-    "opengradient-sdk-js": "git+https://github.com/opengradient/opengradient-sdk-js.git",
+    "opengradient-sdk-js": "https://github.com/opengradient/opengradient-sdk-js.git",
     "@x402/core": "^2.9.0",
     "@x402/evm": "^2.9.0",
     "@x402/next": "^2.9.0",
