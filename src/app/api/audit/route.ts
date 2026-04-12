@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { OpenGradientSDK, LLMInferenceMode } from '@opengradient/sdk';
+import { OpenGradientSDK, LLMInferenceMode } from 'opengradient-sdk-js';
 
 export async function POST(req: NextRequest) {
   try {
