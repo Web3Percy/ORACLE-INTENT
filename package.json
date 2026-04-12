@@ -1,13 +1,6 @@
-{
-  "name": "oracle-intent",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "build": "next build"
-  },
-  "dependencies": {
-    "next": "14.2.35",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  }
+"dependencies": {
+  "next": "14.2.35",
+  "react": "18.2.0",
+  "react-dom": "18.2.0",
+  "opengradient-sdk-js": "https://github.com/opengradient/opengradient-sdk-js/archive/refs/heads/main.tar.gz"
 }
