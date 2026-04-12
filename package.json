@@ -1,12 +1,6 @@
-{
-  "name": "tmp-next",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": { "build": "next build" },
-  "dependencies": {
+"dependencies": {
     "next": "14.2.35",
     "react": "^18",
     "react-dom": "^18",
-    "@opengradient/sdk": "git+https://github.com/opengradient/opengradient-sdk-js.git"
+    "opengradient-sdk-js": "^0.4.2"
   }
-}
