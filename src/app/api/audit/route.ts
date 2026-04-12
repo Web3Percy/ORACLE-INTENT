@@ -71,6 +71,19 @@ const handler = async (req: NextRequest): Promise<NextResponse> => {
       const modelCid = "bafybeiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
       const [, llmResponse] = await ogClient.llmCompletion(
+        // This extracts the real data from the SDK
+    const score = llmResponse.score;
+    const highlights = llmResponse.highlights;
+
+    return Response.json({ score, highlights });
+  } catch (error) {
+    console.error("SDK Error:", error);
+    // This prevents the white "Application Error" screen if the SDK fails
+    return Response.json({ 
+      score: 0, 
+      highlights: [], 
+      error: "The OpenGradient network is busy. Please try again." 
+    });
         modelCid,
         LLMInferenceMode.TEE, // Running in a Verifiable TEE per request
         prompt,
